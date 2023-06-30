@@ -1,0 +1,48 @@
+//this is the correct solution. Below I have attached another solution in whichh 79/80 test cases were running. 
+
+
+class Solution {
+    public boolean checkStraightLine(int[][] coordinates) {
+        int x0 = coordinates[0][0];
+    int y0 = coordinates[0][1];
+    int x1 = coordinates[1][0];
+    int y1 = coordinates[1][1];
+    
+    // Iterate through the remaining points and check if the slope remains consistent
+    for (int i = 2; i < coordinates.length; i++) {
+        int x = coordinates[i][0];
+        int y = coordinates[i][1];
+        
+        // If the current point doesn't satisfy the slope formula, return false
+        if ((y1 - y0) * (x - x0) != (y - y0) * (x1 - x0)) {
+            return false;
+        }
+    }
+    
+    // All points satisfy the slope formula, so they form a straight line
+    return true;
+    }
+}
+
+
+
+//Second solution (incorrect)
+
+class Solution {
+    public boolean checkStraightLine(int[][] coordinates) {
+        int x0 = coordinates[0][0];
+        int x1 = coordinates[1][0];
+        int y0 = coordinates[0][1];
+        int y1 = coordinates[1][1];
+
+        for (int i = 2; i < coordinates.length; i++) {
+            int x = coordinates[i][0];
+            int y = coordinates[i][1];
+
+            if ((double) (y - y0) / (x - x0) != (double) (y1 - y0) / (x1 - x0)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
