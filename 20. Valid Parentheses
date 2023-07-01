@@ -1,0 +1,46 @@
+class Solution {
+    public boolean isValid(String s) {
+       
+        Stack<Character> st=new Stack<>(); //creating a character stack
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            if(ch=='(' || ch=='{' || ch=='['){
+                st.push(ch); //push opening brackets to the stack
+            }
+            //For closing bracket check if the top of the stack matches the opening bracket
+            //if the condition is satisfied then pop the top element until the stack is empty
+            else if(ch==')'){
+                if(st.size()!=0 && st.peek()=='('){
+                    st.pop(); 
+                }
+                else{
+                    return false;
+                }
+            }
+            else if(ch=='}'){
+                if(st.size()!=0 && st.peek()=='{'){
+                    st.pop();
+                }
+                else{
+                    return false;
+                }
+            }
+            else if(ch==']'){
+                if(st.size()!=0 && st.peek()=='['){
+                    st.pop();
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        //If the stack is still not empty after removing the matching brackets then the string does not contain valid parenthesis
+        //return false else return true
+        if(st.size()!=0){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+}
