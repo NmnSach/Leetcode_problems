@@ -1,0 +1,13 @@
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Arrays.sort(nums); // sort the array
+        for(int i=0;i<nums.length-1;i++){
+            if(nums[i]==nums[i+1]){ //compare the element with the next element in the array
+                return true; //return true if duplicate is found
+            }
+        
+        }
+        return false; // no duplicates found 
+        
+    }
+}
