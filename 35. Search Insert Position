@@ -1,0 +1,51 @@
+//Initital Approach. Not optimal. Ran arouond 45 test cases only. Use Linear Search.
+
+/*class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int a=0;
+        for(int i=0;i<nums.length-1;i++){ //target variable exists in the array
+            if(nums[i]==target){
+                a=i;
+
+            }
+             else if(nums[0]>target){ //if target is smaller than first element of the array
+                a=0;
+                break;
+
+            }
+
+            else if(nums[i+1]>target){ //target variable does not exist in the array
+                a=i+1;
+                break;
+            }
+           
+            else{
+                a=i+2; //if the target variable does not exist and will be added to the end of the array.
+            }
+        }
+        return a;
+    }
+}*/
+
+//Optimal Approach. Uses Binary Search and works in logarithmic time. 
+
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return left;
+    }
+}
